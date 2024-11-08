@@ -5,7 +5,7 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
 # Copia el contenido de tu proyecto al contenedor
-COPY . /usr/share/nginx/html
+COPY ./html /usr/share/nginx/html
 
 # Expone el puerto 80 para el servidor Nginx
 EXPOSE 80
