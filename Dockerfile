@@ -1,11 +1,13 @@
-# Usa la imagen base de Nginx
 FROM nginx:alpine
 
-# Copia los archivos de tu sitio web en el directorio que Nginx sirve por defecto
+# Copia tu archivo de configuración en el directorio de configuración de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copia los archivos de tu sitio en el directorio que Nginx usa para servir contenido
 COPY . /usr/share/nginx/html
 
-# Expone el puerto 80 para acceder al sitio web
+# Expone el puerto 80 para el tráfico web
 EXPOSE 80
 
-# Inicia el servidor Nginx
+# Ejecuta Nginx en modo primer plano
 CMD ["nginx", "-g", "daemon off;"]
