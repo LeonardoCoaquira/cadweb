@@ -1,14 +1,11 @@
-# Usa una imagen base de Nginx para servir archivos estáticos
+# Usa la imagen base de Nginx
 FROM nginx:alpine
 
-# Crea una carpeta para almacenar el contenido en el contenedor
-WORKDIR /usr/share/nginx/html
-
-# Copia el contenido de tu proyecto al contenedor
+# Copia los archivos de tu sitio web en el directorio que Nginx sirve por defecto
 COPY . /usr/share/nginx/html
 
-# Expone el puerto 80 para el servidor Nginx
+# Expone el puerto 80 para acceder al sitio web
 EXPOSE 80
 
-# Nginx sirve automáticamente el contenido en /usr/share/nginx/html,
-# donde ahora está tu archivo index.html.
+# Inicia el servidor Nginx
+CMD ["nginx", "-g", "daemon off;"]
