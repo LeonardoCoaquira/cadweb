@@ -1,20 +1,14 @@
-# Usa la imagen base de Node.js
-FROM node:16-alpine
+# Usa la imagen base de Python
+FROM python:3.10-slim
 
-# Define el directorio de trabajo en el contenedor
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copia el archivo package.json y package-lock.json (si existe) para instalar dependencias
-COPY package*.json ./
+# Copia los archivos del proyecto al contenedor (esto puede ser opcional si ya tienes tus archivos en el contenedor)
+COPY . /app
 
-# Instala las dependencias del proyecto
-RUN npm install
+# Expone el puerto 9000
+EXPOSE 9000
 
-# Copia todo el contenido del proyecto al contenedor
-COPY . .
-
-# Expone el puerto en el que se ejecutará la aplicación
-EXPOSE 8080
-
-# Comando para iniciar la aplicación
-CMD ["npm", "run", "build-standalone"]
+# Comando para ejecutar el servidor HTTP de Python
+CMD ["python", "-m", "http.server", "9000"]
